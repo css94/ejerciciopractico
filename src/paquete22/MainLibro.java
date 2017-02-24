@@ -1,6 +1,7 @@
 package paquete22;
 
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.List;
 
 import org.xml.sax.InputSource;
@@ -9,7 +10,10 @@ import org.xml.sax.helpers.XMLReaderFactory;
 
 public class MainLibro {
 	
-	public static void main(String[] args) throws Throwable {
+	private static HashMap<String,Libro>mapaLibros;
+	
+	public static void main(String[] args) throws Throwable 
+	{
 		
 		XMLReader reader = XMLReaderFactory.createXMLReader();
 		ParserLibroXML parserlibro = new ParserLibroXML();
@@ -17,6 +21,31 @@ public class MainLibro {
 		reader.setContentHandler(parserlibro);
 		
 		reader.parse(new InputSource(new FileInputStream("libros.xml")));
+		mostrar();
 		
 	}
+	public static void mostrar()	
+	{
+			
+			for (String nombre: mapaLibros.keySet())
+			{
+	            String value = mapaLibros.get(nombre).toString();
+	            System.out.println(value);  
+			} 
+	}
+	public static int getNlibros(){
+		int numeroTotalLibros=0;
+		for(String nombre:mapaLibros.keySet())
+		{
+			numeroTotalLibros++;
+		}
+		
+		return numeroTotalLibros;
+		
+	}
+	public static void setMapaLibros(HashMap<String,Libro>mapaLibros2)
+	{
+		mapaLibros=mapaLibros2;
+	}
 }
+
