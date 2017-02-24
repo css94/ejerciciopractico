@@ -24,8 +24,7 @@ public class ParserLibroXML extends DefaultHandler{
 	
 	@Override
 	public void endDocument() throws SAXException {
-		System.out.println("FIN DEL DOCUMENTO");
-		imprimirLista((HashMap<String, Libro>) mapa_libros);
+
 	}
 	
 	@Override
@@ -67,6 +66,7 @@ public class ParserLibroXML extends DefaultHandler{
 	}
 	
 	@Override
+	//obtiene el valor que esta entre medias de las etiquetas
 	public void characters(char[] ch, int start, int length)throws SAXException
 	{
 		
@@ -75,12 +75,5 @@ public class ParserLibroXML extends DefaultHandler{
 		valorActual = str;
 	}
 	
-	public static void imprimirLista(HashMap<String,Libro> listaLibros)	{
-		
-		for (String nombre: listaLibros.keySet())
-		{
-            String value = listaLibros.get(nombre).toString();
-            System.out.println(nombre+value);  
-		} 
+	
 	}
-}
